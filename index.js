@@ -20,17 +20,22 @@ const db = admin.firestore();
 app.get('/aqi', async (req, res) => {
   try {
     const snapshot = await db.collection('SensorData').get();
+
     const data = snapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data()
     }));
-    console.log("Fetched AQI data:", data); // For Vercel logs
+
+    // ✅ Log the output to see what's being returned from Firestore
+    console.log("🔥 Retrieved data from Firestore:", data);
+
     res.json(data);
   } catch (err) {
-    console.error("Error fetching data:", err);
+    console.error("❌ Error fetching data from Firestore:", err);
     res.status(500).send(`Error fetching AQI data: ${err.message}`);
   }
 });
+
 
 // 🔸 POST /aqi — add new sensor data to Firestore
 app.post('/aqi', async (req, res) => {
