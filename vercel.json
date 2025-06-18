@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "DEMOAPI/index.js",
+      "src": "demoapi/index.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "DEMOAPI/index.js"
+      "dest": "demoapi/index.js"
     }
   ]
 }
